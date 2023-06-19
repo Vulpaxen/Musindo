@@ -1,0 +1,83 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="MainView.master.cs" Inherits="KpopZstation.View.MainView" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+
+    <!-- Hope Ui Design System Css (Bootstrap Template -> styling tidak masuk komponen penilaian) -->
+    <link rel="stylesheet" href="../assets/css/hope-ui.min.css?v=1.0.3" />
+
+    <style>
+    </style>
+
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Musindo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnHome" class="nav-link" runat="server" OnClick="btHome_Click">Home</asp:LinkButton>
+                            </li>
+                            <% if (customer == null)
+                                {%>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogin" class="nav-link" runat="server" OnClick="btLogin_Click">Login</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnRegister" class="nav-link" runat="server" OnClick="btRegister_Click">Register</asp:LinkButton>
+                            </li>
+                            <%}
+                                else if (customer.CustomerRole.Equals("admin"))
+                                { %>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnProfileAdmin" class="nav-link" runat="server" OnClick="btUpdateC_Click">Update Profile</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogoutAdmin" class="nav-link" runat="server" OnClick="btLogoutC_Click">Logout</asp:LinkButton>
+                            </li>
+                            <%}
+                                else
+                                { %>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnCartUser" class="nav-link" runat="server" OnClick="btCartC_Click">Cart</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnTransactionUser" class="nav-link" runat="server" OnClick="btTransactionC_Click">Transaction</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnUpdateProfileUser" class="nav-link" runat="server" OnClick="btUpdateC_Click">Update Profile</asp:LinkButton>
+                            </li>
+                            <li class="nav-item">
+                                <asp:LinkButton ID="btnLogoutUser" class="nav-link" runat="server" OnClick="btLogoutC_Click">Logout</asp:LinkButton>
+                            </li>
+                            <%} %>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <div class="container-fluid">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+        </div>
+    </form>
+
+    <!-- Required Library Bundle Script (Library Bootstrap) -->
+    <script src="../assets/js/core/libs.min.js"></script>
+
+    <!-- App Script (Library Bootstrap) -->
+    <script src="../assets/js/hope-ui.js" defer></script>
+
+</body>
+</html>
